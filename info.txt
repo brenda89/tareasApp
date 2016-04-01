@@ -1,0 +1,3 @@
+user: root
+password: null
+database: bd_tareas
