@@ -1,0 +1,74 @@
+<div ng-controller="tareasCtrl">
+  <h1>Lista de Tareas</h1>
+  Programar tarea <input name="nombre_tarea" ng-model="nuevaTarea.nombre_tarea" placeholder="" type="text" required>
+
+  para el dia <input name="fecha_tarea" ng-model="nuevaTarea.fecha_tarea" placeholder="" type="text" required>
+
+<button class="btn btn-success" ng-click="create()" ><span class="glyphicon glyphicon-plus"></span>AGREGAR TAREA</button> 
+
+<button class="btn btn-success" ng-click="cargaTareas()" >CARGAR DATOS</button>
+
+<ul ng-repeat="tarea in tareas">
+      <li >
+
+<!--
+        {{tarea.nombre_tarea}} 
+        <input type="text" ng-model="tarea.nombre_tarea"></input>
+          <button class="btn btn-success" ng-click="" ><span class="glyphicon glyphicon-edit"></span></button>
+-->
+<form class="form-inline">
+<div class="form-group">
+
+<div ng-hide="showEditInput && editableId == tarea.id_tarea">{{ tarea.nombre_tarea }}</div>
+<div ng-show="showEditInput && editableId == tarea.id_tarea"><input type="text" ng-model="tarea.nombre_tarea"></div>
+<!--BOTON EDITAR -->
+<button class="btn btn-primary btn-xs" ng-hide="showEditInput && editableId == tarea.id_tarea" ng-click="showEdit(tarea.id_tarea)"><span class="glyphicon glyphicon-edit"></span></button>
+<!--BOTON GUARDAR EDICION -->      
+<button class="btn btn-info btn-xs" ng-show="showEditInput && editableId == tarea.id_tarea" ng-click="update(tarea.id_tarea,tarea.nombre_tarea)"><span class="glyphicon glyphicon-check"></span></button>
+<!--BOTON CANCELAR EDICION -->
+<button class="btn btn-warning btn-xs" ng-show="showEditInput && editableId == tarea.id_tarea" ng-click="cancel()"><span class="glyphicon glyphicon-remove-circle"></span></button>
+<!--BOTON ELIMINAR -->      
+<button class="btn btn-danger btn-xs" ng-click="delete(tarea.id_tarea)"><span class="glyphicon glyphicon-trash"></span></button>
+
+</div>
+</form>
+
+
+      </li>
+    </ul>
+
+
+
+<!--
+<button class="btn btn-success" ng-click="create()" ng-disabled="form.nombre_tarea.$error.required || form.nombre_tarea.$error.required || form.fecha_tarea.$error.required"><span class="glyphicon glyphicon-plus"></span>AGREGAR TAREA</button>  
+-->
+<div class="row">
+  <div class="col-md-9">
+
+  </div>
+</div>
+
+<!-- Jesus ejemplo-->
+<!--
+  <table class="table table-hover">
+    <tr>
+      <form name="form">
+        <td><input name="username" ng-model="newUser.username" placeholder="Username" type="text" required></td>
+        <td><input name="name" ng-model="newUser.name" placeholder="Name" type="text" required></td>
+        <td><input name="birthday" ng-model="newUser.birthday" placeholder="Birthday" type="text" required></td>
+        <td><button class="btn btn-success" ng-click="create()" ng-disabled="form.username.$error.required || form.name.$error.required || form.birthday.$error.required"><span class="glyphicon glyphicon-plus"></span></button></td>
+      </form>
+    </tr>
+    <tr ng-repeat="(username, user) in tareas">
+      <td><div>{{ username }}</div></td>
+      <td><div ng-hide="showEditInput && editableId == username">{{ user.name }}</div><div ng-show="showEditInput && editableId == username"><input type="text" ng-model="user.name"></div></td>
+      <td><div ng-hide="showEditInput && editableId == username">{{ user.birthday }}</div><div ng-show="showEditInput && editableId == username"><input type="text" ng-model="user.birthday"></div></td>
+      <td><button class="btn btn-primary" ng-hide="showEditInput && editableId == username" ng-click="showEdit(username, user)"><span class="glyphicon glyphicon-edit"></span></button></td>
+      <td><button class="btn btn-info" ng-show="showEditInput && editableId == username" ng-click="update(username, user)"><span class="glyphicon glyphicon-check"></span></button></td>
+      <td><button class="btn btn-warning" ng-show="showEditInput && editableId == username" ng-click="cancel()"><span class="glyphicon glyphicon-remove-circle"></span></button></td>
+      <td><button class="btn btn-danger" ng-click="delete(username)"><span class="glyphicon glyphicon-trash"></span></button></td>
+    </tr>
+  </table>
+-->
+
+</div>
