@@ -17,18 +17,13 @@ angular
       }
   
      
-      $scope.update = function(id, tarea) {
-        
-        //var data = '{ "ID_TAREA": "' + $scope.nuevaTarea.id + '", "' + 'TAREA": "' + $scope.nuevaTarea.tarea + '" }';
-          var data = {
-                  ID_TAREA : id,
-                  TAREA : tarea
-              };       
-        console.log(data);
-        
+      $scope.update = function(id, tarea) {        
+        //var data = '{ "ID_TAREA": "' + id + '", "' + 'TAREA": "' + tarea + '" }';
+        var data = '{ "TAREA": "' + tarea + '" }';
+        console.log(data);        
         $http
-          .put("http://localhost/api_tareas/slimrest/tareas", 
-            data, []).success(function(response) {
+          .put("http://localhost/api_tareas/slimrest/tareas/"+id+"", 
+             data ).success(function(response) {
               console.log(response);
               $scope.cancel();
             });
